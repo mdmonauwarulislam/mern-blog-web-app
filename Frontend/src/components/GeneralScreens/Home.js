@@ -12,7 +12,7 @@ import "../../Css/Home.css";
 const Home = () => {
   const search = useLocation().search;
   const searchKey = new URLSearchParams(search).get('search');
-  const [stories, setStories] = useState([]);
+  const [stories, setStories] = useState([]); // Default to empty array
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
@@ -30,8 +30,8 @@ const Home = () => {
           search: `?search=${searchKey || ""}${page > 1 ? `&page=${page}` : ""}`,
         });
 
-        setStories(data.data);
-        setPages(data.pages);
+        setStories(data.data || []); // Default to empty array if data.data is undefined
+        setPages(data.pages || 1); // Default to 1 if data.pages is undefined
         setLoading(false);
       } catch (error) {
         console.error('Error fetching stories:', error);
@@ -40,11 +40,11 @@ const Home = () => {
     };
 
     getStories();
-  }, [searchKey, page, navigate]); // Correct dependencies
+  }, [searchKey, page, navigate]);
 
   useEffect(() => {
     setPage(1);
-  }, [searchKey]); // Reset page on searchKey change
+  }, [searchKey]);
 
   return (
     <div className="Inclusive-home-page">
@@ -57,7 +57,7 @@ const Home = () => {
       ) : (
         <div>
           <div className="story-card-wrapper">
-            {stories.length !== 0 ? (
+            {stories.length > 0 ? (
               stories.map((story) => (
                 <CardStory key={uuidv4()} story={story} />
               ))
