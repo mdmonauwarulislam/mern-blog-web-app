@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API from "../../../environmentVariables";
 import "../../Css/Register.css"
 const RegisterScreen = () => {
   const [username, setUsername] = useState("");
@@ -24,7 +25,7 @@ const RegisterScreen = () => {
 
     try {
       const { data } = await axios.post(
-        "/auth/register",
+        `${API}/auth/register`,
         {
           username,
           email,
