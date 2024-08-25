@@ -8,6 +8,7 @@ import CardStory from "../StoryScreens/CardStory";
 import NoStories from "../StoryScreens/NoStories";
 import Pagination from "./Pagination";
 import "../../Css/Home.css";
+import API from "../../environmentVariables";
 
 const Home = () => {
   const search = useLocation().search;
@@ -22,7 +23,7 @@ const Home = () => {
     const getStories = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get(`/story/getAllStories?search=${searchKey || ""}&page=${page}`);
+        const { data } = await axios.get(`${API}/story/getAllStories?search=${searchKey || ""}&page=${page}`);
 
         // Update URL search parameters
         navigate({
