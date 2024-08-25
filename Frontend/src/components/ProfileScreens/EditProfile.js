@@ -6,6 +6,7 @@ import Loader from "../GeneralScreens/Loader";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
 import '../../Css/EditProfile.css'
+import API from '../../environmentVariables';
 
 const EditProfile = () => {
     const { activeUser, config } = useContext(AuthContext)
@@ -119,7 +120,7 @@ const EditProfile = () => {
                                     <div class="absolute">
                                         Currently Image
                                     </div>
-                                    <img src={`http://localhost:5000/userPhotos/${previousPhoto}`} alt="userPhoto" />
+                                    <img src={`${API}/userPhotos/${previousPhoto}`} alt="userPhoto" />
                                 </div>
 
                             </div>

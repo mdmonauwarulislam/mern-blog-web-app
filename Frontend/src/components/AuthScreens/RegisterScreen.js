@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import API from "../../../environmentVariables";
+import API from "../../environmentVariables";
 import "../../Css/Register.css"
 const RegisterScreen = () => {
   const [username, setUsername] = useState("");
